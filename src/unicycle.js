@@ -1,4 +1,5 @@
 
+
 //TODO: Handle concurrency management if necessary
 //TODO: Allow for granular eventing
 
@@ -22,7 +23,7 @@
         },
         handle: function(action) {
             if(action.type in this.actions) {
-                this.actions[action.type](action, this.state);
+                this.actions[action.type].call(this, action);
                 this.emitChange();
             }
         },
@@ -45,4 +46,5 @@
     };
 
     window.Unicycle = Unicycle;
+
 })();
