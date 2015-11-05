@@ -6,7 +6,6 @@ Unicycle.createStore('Todo', {
     },
     actions: {
         addTodo: function addTodo(action) {
-            Unicycle.waitFor('OtherStore');
             this.state.todos.push(action.text);
         }
     }
