@@ -1,8 +1,3 @@
-
-
-//TODO: Handle concurrency management if necessary
-//TODO: Allow for granular eventing
-
 (function(){
 
     var Unicycle = Unicycle || {};

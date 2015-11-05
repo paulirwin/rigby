@@ -3,10 +3,12 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/dist/unicycle.min.js" />
+        <item url="file://$PROJECT_DIR$/demo-compiled.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/dist/unicycle.min.js" />
+      <root url="file://$PROJECT_DIR$/demo-compiled.js" />
     </CLASSES>
     <SOURCES />
   </library>
