@@ -15,6 +15,7 @@ Unicycle.createStore('YourStoreName', {
     actions: {
         doThingsWithData: function(action) {
             this.state.data.push(action.text);
+            this.emitChange();
         }
     }
 });
