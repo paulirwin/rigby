@@ -1,13 +1,21 @@
 'use strict';
 
 Unicycle.createStore('Todo', {
+
     state: {
+
         todos: ['test']
+
     },
+
     actions: {
+
         addTodo: function addTodo(action) {
+            debugger;
             this.state.todos.push(action.text);
+            this.emitChange();
         }
+
     }
 });
 
@@ -17,12 +25,15 @@ var TodoContainer = React.createClass({
     componentDidMount: function componentDidMount() {
         Unicycle.Stores['Todo'].listen(this.onChange);
     },
+
     componentWillUnmount: function componentWillUnmount() {
         Unicycle.Stores['Todo'].mute(this.onChange);
     },
+
     getInitialState: function getInitialState() {
         return Unicycle.Stores['Todo'].getState();
     },
+
     render: function render() {
 
         var todos = this.state.todos.map(function (todo) {
@@ -39,9 +50,11 @@ var TodoContainer = React.createClass({
             todos
         );
     },
+
     onChange: function onChange(state) {
         this.setState(state);
     }
+
 });
 
 React.render(React.createElement(TodoContainer, null), document.body);
