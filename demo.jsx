@@ -12,7 +12,6 @@ Unicycle.createStore('Todo', {
     actions: {
 
         addTodo: function(action) {
-            debugger;
             this.state.todos.push(action.text);
             this.emitChange();
         }
