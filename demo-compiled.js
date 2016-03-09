@@ -2,20 +2,13 @@
 
 Unicycle.createStore('Todo', {
 
-    state: {
-
-        todos: ['test']
-
-    },
+    state: { todos: [] },
 
     actions: {
-
         addTodo: function addTodo(action) {
-            debugger;
             this.state.todos.push(action.text);
             this.emitChange();
         }
-
     }
 });
 
@@ -36,10 +29,11 @@ var TodoContainer = React.createClass({
 
     render: function render() {
 
-        var todos = this.state.todos.map(function (todo) {
+        //bad hat
+        var todos = this.state.todos.map(function (todo, index) {
             return React.createElement(
                 'p',
-                { key: todo },
+                { key: index },
                 todo
             );
         });
@@ -47,7 +41,8 @@ var TodoContainer = React.createClass({
         return React.createElement(
             'div',
             null,
-            todos
+            todos,
+            React.createElement(TodoCreator, null)
         );
     },
 
@@ -57,11 +52,30 @@ var TodoContainer = React.createClass({
 
 });
 
-React.render(React.createElement(TodoContainer, null), document.body);
+var TodoCreator = React.createClass({
+    displayName: 'TodoCreator',
 
-Unicycle.dispatch({
-    type: 'addTodo',
-    text: 'wee'
+    render: function render() {
+        return React.createElement(
+            'div',
+            null,
+            React.createElement('input', { type: 'text', ref: 'newTodo' }),
+            React.createElement(
+                'button',
+                { onClick: this.addTodo },
+                'Add'
+            )
+        );
+    },
+
+    addTodo: function addTodo() {
+        Unicycle.dispatch({
+            type: 'addTodo',
+            text: React.findDOMNode(this.refs.newTodo).value
+        });
+    }
 });
+
+React.render(React.createElement(TodoContainer, null), document.body);
 
 //# sourceMappingURL=demo-compiled.js.map

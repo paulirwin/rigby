@@ -1,21 +1,13 @@
 
 Unicycle.createStore('Todo', {
 
-    state: {
-
-        todos: [
-            'test'
-        ]
-
-    },
+    state: { todos: [] },
 
     actions: {
-
         addTodo: function(action) {
             this.state.todos.push(action.text);
             this.emitChange();
         }
-
     }
 });
 
@@ -36,11 +28,13 @@ var TodoContainer = React.createClass({
 
     render() {
 
-        var todos = this.state.todos.map(todo => <p key={todo}>{todo}</p>)
+        //bad hat
+        var todos = this.state.todos.map((todo, index) => <p key={index}>{todo}</p>)
 
         return (
             <div>
                 {todos}
+                <TodoCreator/>
             </div>
         )
     },
@@ -51,9 +45,25 @@ var TodoContainer = React.createClass({
 
 });
 
+var TodoCreator = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <input type="text" ref="newTodo"/>
+                <button onClick={this.addTodo}>Add</button>
+            </div>
+        )
+    },
+
+    addTodo() {
+        Unicycle.dispatch({
+            type: 'addTodo',
+            text: React.findDOMNode(this.refs.newTodo).value
+        });
+    }
+});
+
+
 React.render(<TodoContainer/>, document.body);
 
-Unicycle.dispatch({
-    type: 'addTodo',
-    text: 'wee'
-});
+
