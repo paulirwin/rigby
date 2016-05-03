@@ -1,29 +1,27 @@
-
-Unicycle.createStore('Todo', {
+var TodoStore = Unicycle.createStore('Todo', {
 
     state: { todos: [] },
 
     actions: {
-        addTodo: function(action) {
+        addTodo(action) {
             this.state.todos.push(action.text);
             this.emitChange();
         }
     }
 });
 
-
 var TodoContainer = React.createClass({
 
     componentDidMount() {
-        Unicycle.Stores['Todo'].listen(this.onChange);
+        TodoStore.listen(this.onChange);
     },
 
     componentWillUnmount() {
-        Unicycle.Stores['Todo'].mute(this.onChange);
+        TodoStore.mute(this.onChange);
     },
 
     getInitialState() {
-        return Unicycle.Stores['Todo'].getState();
+        return TodoStore.getState();
     },
 
     render() {
@@ -46,7 +44,7 @@ var TodoContainer = React.createClass({
 });
 
 var TodoCreator = React.createClass({
-    render: function() {
+    render() {
         return (
             <div>
                 <input type="text" ref="newTodo"/>
@@ -58,12 +56,12 @@ var TodoCreator = React.createClass({
     addTodo() {
         Unicycle.dispatch({
             type: 'addTodo',
-            text: React.findDOMNode(this.refs.newTodo).value
+            text: ReactDOM.findDOMNode(this.refs.newTodo).value
         });
     }
 });
 
 
-React.render(<TodoContainer/>, document.body);
+ReactDOM.render(<TodoContainer/>, document.body);
 
 
