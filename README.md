@@ -1,6 +1,6 @@
 # rigby
 
-####A React is great, but, y'know
+####React is great, but, y'know
 
 #####Usage
 
