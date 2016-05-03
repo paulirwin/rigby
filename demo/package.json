@@ -1,5 +1,5 @@
 {
-  "name": "unicycle-demo",
+  "name": "rigby-demo",
   "version": "1.0.0",
   "description": "",
   "main": "demo-compiled.js",
@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "babel ./demo.jsx --out-file ./demo-compiled.js --source-maps --presets react,es2015"
   },
+  "private": true,
   "author": "",
   "license": "MIT",
   "devDependencies": {
