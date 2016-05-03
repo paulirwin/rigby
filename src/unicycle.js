@@ -1,55 +1,55 @@
-(function(){
 
-    var Unicycle = Unicycle || {};
+const Stores = {};
 
-    Unicycle.Stores = Unicycle.Stores || {};
-
-    Unicycle.Store = {
-
-        actions: {},
-
-        state: {},
-
-        callbacks: [],
-
-        emitChange: function() {
-            this.callbacks.forEach(function(callback){
-                callback(this.state);
-            }, this);
-        },
-
-        getState: function() {
-            return this.state;
-        },
-
-        handle: function(action) {
-            if(action.type in this.actions) {
-                this.actions[action.type].call(this, action);
-            }
-        },
-
-        listen: function(callback) {
-            return this.callbacks.push(callback);
-        },
-
-        mute: function(index) {
-            this.callbacks.splice(index, 1);
+export default class Store {
+    
+    constructor(name) {
+        this.actions = {};
+        this.state = {};
+        this.callbacks = [];
+        
+        Stores[name] = this;
+    }
+    
+    static dispatch(action) {
+        for(var key in Stores) {
+            Stores[key].handle(action);
         }
+    }
+    
+    static createStore(name, store) {
+        return Object.assign(new Store(name), store);
+    }
+    
+    emitChange() {
+        this.callbacks.forEach(function(callback){
+            callback(this.state);
+        }, this);
+    }
 
-    };
+    getState() {
+        return this.state;
+    }
 
-    Unicycle.dispatch = function(action) {
-
-        for(var key in Unicycle.Stores) {
-            Unicycle.Stores[key].handle(action);
+    handle(action) {
+        if(action.type in this.actions) {
+            this.actions[action.type].call(this, action);
         }
+    }
 
-    };
+    listen(callback) {
+        return this.callbacks.push(callback);
+    }
 
-    Unicycle.createStore = function(name, store) {
-        Unicycle.Stores[name] = Object.assign(Object.create(Unicycle.Store), store);
-    };
+    mute(index) {
+        this.callbacks.splice(index, 1);
+    }
+    
+}
 
-    window.Unicycle = Unicycle;
+const createStore = Store.createStore;
+const dispatch = Store.dispatch;
 
-})();
+export { createStore, dispatch }
+
+window.Unicycle = Store;
