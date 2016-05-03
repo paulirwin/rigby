@@ -1,22 +1,22 @@
 {
-  "name": "unicycle",
+  "name": "rigby",
   "version": "1.0.0",
   "description": "A micro library for managing state with React.",
-  "main": "src/unicycle.js",
+  "main": "src/rigby.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/captray/unicycle.git"
+    "url": "git+https://github.com/captray/rigby.git"
   },
   "author": "Raymond McDermott",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/captray/unicycle/issues"
+    "url": "https://github.com/captray/rigby/issues"
   },
-  "homepage": "https://github.com/captray/unicycle#readme",
+  "homepage": "https://github.com/captray/rigby#readme",
   "devDependencies": {
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",

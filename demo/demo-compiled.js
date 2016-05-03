@@ -1,6 +1,6 @@
 "use strict";
 
-var TodoStore = Unicycle.createStore('Todo', {
+var TodoStore = Rigby.createStore('Todo', {
 
     state: { todos: [] },
 
@@ -61,7 +61,7 @@ var TodoCreator = React.createClass({
         );
     },
     addTodo: function addTodo() {
-        Unicycle.dispatch({
+        Rigby.dispatch({
             type: 'addTodo',
             text: ReactDOM.findDOMNode(this.refs.newTodo).value
         });

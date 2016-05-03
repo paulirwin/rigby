@@ -52,4 +52,4 @@ const dispatch = Store.dispatch;
 
 export { createStore, dispatch }
 
-window.Unicycle = Store;
+window.Rigby = Store;

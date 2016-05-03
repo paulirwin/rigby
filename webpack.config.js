@@ -7,10 +7,10 @@ var PATHS = {
 };
 
 module.exports = {
-    entry: path.join(PATHS.src, "unicycle.js"),
+    entry: path.join(PATHS.src, "rigby.js"),
     output: {
         path: PATHS.build,
-        filename: "unicycle.min.js"
+        filename: "rigby.min.js"
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
