@@ -1,6 +1,6 @@
-# Unicycle
+# rigby
 
-####A micro library for managing state with React.
+####A React is great, but, y'know
 
 #####Usage
 
