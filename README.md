@@ -6,7 +6,7 @@
 
 ```javascript
 
-Unicycle.createStore('YourStoreName', {
+Rigby.createStore('YourStoreName', {
     state: {
         data: [
           'Your Data Goes Here'
