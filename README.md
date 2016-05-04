@@ -2,6 +2,10 @@
 
 ####React is great, but... y'know
 
+#####Installation
+
+[npm install rigby](https://www.npmjs.com/package/rigby)
+
 #####Usage
 
 ```javascript
