@@ -4,21 +4,23 @@ const Stores = {};
 export default class Store {
     
     constructor(name) {
-        this.actions = {};
         this.state = {};
         this.callbacks = [];
         
         Stores[name] = this;
     }
     
-    static dispatch(action) {
+    static dispatch(type, ...args) {
         for(var key in Stores) {
-            Stores[key].handle(action);
+            Stores[key].handle(type, args);
         }
     }
     
     static createStore(name, store) {
-        return Object.assign(new Store(name), store);
+        let s = new Store(name);
+        Object.assign(s.state, store.state || {});
+        Object.assign(s, store.actions || {});
+        return s;
     }
     
     emitChange() {
@@ -31,9 +33,9 @@ export default class Store {
         return this.state;
     }
 
-    handle(action) {
-        if(action.type in this.actions) {
-            this.actions[action.type].call(this, action);
+    handle(type, args) {
+        if (type in this) {
+            this[type].call(this, args);
         }
     }
 
