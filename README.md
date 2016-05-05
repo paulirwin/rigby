@@ -17,8 +17,8 @@ Rigby.createStore('YourStoreName', {
         ]
     },
     actions: {
-        doThingsWithData: function(action) {
-            this.state.data.push(action.text);
+        doThingsWithData: function(text) {
+            this.state.data.push(text);
             this.emitChange();
         }
     }

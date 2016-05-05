@@ -5,8 +5,8 @@ var TodoStore = Rigby.createStore('Todo', {
     state: { todos: [] },
 
     actions: {
-        addTodo: function addTodo(action) {
-            this.state.todos.push(action.text);
+        addTodo: function addTodo(text) {
+            this.state.todos.push(text);
             this.emitChange();
         }
     }
@@ -61,10 +61,7 @@ var TodoCreator = React.createClass({
         );
     },
     addTodo: function addTodo() {
-        Rigby.dispatch({
-            type: 'addTodo',
-            text: ReactDOM.findDOMNode(this.refs.newTodo).value
-        });
+        Rigby.dispatch('addTodo', ReactDOM.findDOMNode(this.refs.newTodo).value);
     }
 });
 
