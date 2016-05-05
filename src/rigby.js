@@ -35,7 +35,7 @@ export default class Store {
 
     handle(type, args) {
         if (type in this) {
-            this[type].call(this, args);
+            this[type].apply(this, args);
         }
     }
 
