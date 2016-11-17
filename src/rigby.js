@@ -1,25 +1,27 @@
-module = {};
-exports = Function('return this')();
+if (typeof module === 'undefined') {
+    module = {};
+    exports = Function('return this')();
 
-Object.defineProperties(module, {
-    'namespace': {
-      set: function (obj) {
-        exports = obj;
-      }
-    },
-    'exports': {
-      set: function (obj) {
-        for (var prop in obj) {
-          if (obj.hasOwnProperty(prop)) {
-            exports[prop] = obj[prop];
-          }
+    Object.defineProperties(module, {
+        'namespace': {
+            set: function (obj) {
+                exports = obj;
+            }
+        },
+        'exports': {
+            set: function (obj) {
+                for (var prop in obj) {
+                    if (obj.hasOwnProperty(prop)) {
+                        exports[prop] = obj[prop];
+                    }
+                }
+            },
+            get: function () {
+                return exports;
+            }
         }
-      },
-      get: function () {
-        return exports;
-      }
-    }
-});
+    });
+}
 
 const Stores = {};
 
