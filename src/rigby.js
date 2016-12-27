@@ -64,7 +64,7 @@ export default class Store {
     }
 
     listen(callback) {
-        return this.callbacks.push(callback);
+        return this.callbacks.push(callback) - 1;
     }
 
     mute(index) {
