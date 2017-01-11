@@ -27,14 +27,9 @@ var TodoContainer = React.createClass({
     render() {
 
         //bad hat
-        var todos = this.state.todos.map((todo, index) => <p key={index}>{todo}</p>)
+        var todos = this.state.todos.map(function(todo, index) { return React.createElement("p", { key: index }, todo); });
 
-        return (
-            <div>
-                {todos}
-                <TodoCreator/>
-            </div>
-        )
+        return React.createElement("div", null, todos, React.createElement(TodoCreator, null));
     },
 
     onChange(state) {
@@ -45,12 +40,10 @@ var TodoContainer = React.createClass({
 
 var TodoCreator = React.createClass({
     render() {
-        return (
-            <div>
-                <input type="text" ref="newTodo"/>
-                <button onClick={this.addTodo}>Add</button>
-            </div>
-        )
+        return React.createElement("div", null, 
+            React.createElement("input", { type: "text", ref: "newTodo" }),
+            React.createElement("button", { onClick: this.addTodo }, "Add")
+        );
     },
 
     addTodo() {
@@ -59,6 +52,4 @@ var TodoCreator = React.createClass({
 });
 
 
-ReactDOM.render(<TodoContainer/>, document.body);
-
-
+ReactDOM.render(React.createElement(TodoContainer, null), document.getElementById("mount"));

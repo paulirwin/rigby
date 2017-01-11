@@ -1,28 +1,3 @@
-if (typeof module === 'undefined') {
-    module = {};
-    exports = Function('return this')();
-
-    Object.defineProperties(module, {
-        'namespace': {
-            set: function (obj) {
-                exports = obj;
-            }
-        },
-        'exports': {
-            set: function (obj) {
-                for (var prop in obj) {
-                    if (obj.hasOwnProperty(prop)) {
-                        exports[prop] = obj[prop];
-                    }
-                }
-            },
-            get: function () {
-                return exports;
-            }
-        }
-    });
-}
-
 const Stores = {};
 
 export default class Store {
@@ -35,8 +10,10 @@ export default class Store {
     }
     
     static dispatch(type, ...args) {
-        for(var key in Stores) {
-            Stores[key].handle(type, args);
+        for (var key in Stores) {
+            if (Stores.hasOwnProperty(key)) {
+                Stores[key].handle(type, args);
+            }
         }
     }
     
