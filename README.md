@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/captray/rigby.svg?branch=master)](https://travis-ci.org/captray/rigby)
+
 # rigby
 
 ####React is great, but... y'know
