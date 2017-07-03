@@ -2,13 +2,13 @@
 
 # rigby
 
-####React is great, but... y'know
+React is great, but... y'know
 
-#####Installation
+## Installation
 
-[npm install rigby](https://www.npmjs.com/package/rigby)
+[npm i rigby](https://www.npmjs.com/package/rigby)
 
-#####Creating a Store
+## Creating a Store
 
 ```javascript
 
@@ -31,7 +31,7 @@ Rigby.createStore('YourStoreName', {
 
 ```
 
-Or with ES6:
+Or with ES2015+:
 
 ```javascript
 import Store from "rigby";
@@ -53,7 +53,38 @@ class YourStore extends Store {
 
 ```
 
-#####Dispatching Actions
+Or with TypeScript:
+
+```javascript
+import Store from "rigby";
+
+interface ToDo {
+  text: string;
+  complete: boolean;
+}
+
+interface YourStoreState {
+  todos: ToDo[];
+}
+
+class YourStore extends Store<YourStoreState> {
+  constructor() {
+    super("YourStoreName");
+
+    this.state.todos = [ 
+      { text: "Your Data Goes Here", complete: false }
+    ];
+  }
+
+  addTodo(text: string, complete: boolean) {
+      this.state.todos.push({ text, complete });
+      this.emitChange();
+  }
+}
+
+```
+
+## Dispatching Actions
 
 ```javascript
 import Rigby from "rigby";
@@ -61,10 +92,10 @@ import Rigby from "rigby";
 Rigby.dispatch("addTodo", "Your New Todo", false);
 ```
 
-#####Why
+## Why
 
 Less boilerplate when creating Stores and a more fluent API for doing so.
 
-#####Plans
+## Plans
 
 This is a thought experiment, and there are plans for versions that allow for using RxJS or move in the direction of things like Cycle and Yolk.
