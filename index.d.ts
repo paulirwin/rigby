@@ -39,7 +39,7 @@ export default class Store<TState> extends StoreStatic {
 
     listen(callback: StoreCallback): number;
 
-    mute(id: number);
+    mute(id: number): void;
 
 }
 
