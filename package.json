@@ -1,16 +1,18 @@
 {
   "name": "rigby",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A micro library for managing state with React.",
   "browser": "dist/rigby.js",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
+  "types": "./index.d.ts",
   "files": [
     "dist",
     "lib",
     "es",
-    "src"
+    "src",
+    "index.d.ts"
   ],
   "scripts": {
     "clean": "rimraf lib dist es",
@@ -22,7 +24,7 @@
     "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/rigby.js",
     "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/rigby.min.js",
     "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
-    "prepublish": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
@@ -68,6 +70,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.9.0",
     "rimraf": "^2.5.4",
+    "typescript": "^2.4.1",
     "webpack": "^1.9.6"
   }
 }

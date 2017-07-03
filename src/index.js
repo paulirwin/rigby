@@ -1,12 +1,20 @@
 const Stores = {};
 
 export default class Store {
-    
+
     constructor(name) {
         this.state = {};
-        this.callbacks = [];
+        this.callbacks = {};
         
         Stores[name] = this;
+
+        let _callbackId = 0;
+
+        this.listen = (callback) => {
+            let id = _callbackId++;
+            this.callbacks[id] = callback;
+            return id;
+        };
     }
     
     static dispatch(type, ...args) {
@@ -25,9 +33,11 @@ export default class Store {
     }
     
     emitChange() {
-        this.callbacks.forEach(function(callback){
-            callback(this.state);
-        }, this);
+        for (let i in this.callbacks) {
+            if (this.callbacks.hasOwnProperty(i)) {
+                this.callbacks[i](this.state);
+            }
+        }
     }
 
     getState() {
@@ -40,14 +50,9 @@ export default class Store {
         }
     }
 
-    listen(callback) {
-        return this.callbacks.push(callback) - 1;
-    }
-
-    mute(index) {
-        this.callbacks.splice(index, 1);
-    }
-    
+    mute(id) {
+        delete this.callbacks[id];
+    }    
 }
 
 const createStore = Store.createStore;
