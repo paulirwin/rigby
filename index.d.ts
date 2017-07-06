@@ -31,6 +31,8 @@ export default class Store<TState> extends StoreStatic {
 
     constructor(name: string);
 
+    protected state: TState;
+
     emitChange(): void;
 
     getState(): TState;
