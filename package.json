@@ -1,6 +1,6 @@
 {
   "name": "rigby",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A micro library for managing state with React.",
   "browser": "dist/rigby.js",
   "main": "lib/index.js",
